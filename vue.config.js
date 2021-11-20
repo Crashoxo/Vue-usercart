@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/Vue-cart/dist/',
+  publicPath: '/Vue-usercart/dist/',
 };
