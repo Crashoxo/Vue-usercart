@@ -79,12 +79,9 @@
       </div>
     </div>
     <!-- 分頁元件 -->
-    <Pagination :pages="pagination" @emit-pages="getProductsPage"></Pagination>
   </div>
 </template>
 <script>
-//匯入分頁元件
-import Pagination from "@/components/Pagination.vue";
 
 export default {
   data() {
@@ -103,10 +100,6 @@ export default {
       // 判斷是否要loading轉圈圈 倉庫
       isLoading: false,
     };
-  },
-  components: {
-    // 區域註冊元件
-    Pagination,
   },
   // 引用emitter (因 Dashboard.vue provide )
   inject: ["emitter"],
@@ -140,29 +133,6 @@ export default {
         console.log("res", res);
         // 轉跳登入頁面
         this.$router.push("/user/cart");
-      });
-    },
-
-    // 2.產品列表 (撈資料)
-    // page = 1 預設
-    getProductsPage(page = 1) {
-      // 3.使用API抓值 取得商品列表及分頁
-      // https://github.com/hexschool/vue3-course-api-wiki/wiki/%E7%AE%A1%E7%90%86%E6%8E%A7%E5%88%B6%E5%8F%B0-%5B%E9%9C%80%E9%A9%97%E8%AD%89%5D#%E5%8F%96%E5%BE%97%E5%95%86%E5%93%81%E5%88%97%E8%A1%A8
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}`;
-      // 撈到資料前有loding圈圈
-      this.isLoading = true;
-      console.log("api", api);
-
-      // 4.axios get(api, 欲傳送的值)方法
-      this.$http.get(api).then((res) => {
-        // 撈到資料loding圈圈關閉
-        this.isLoading = false;
-        if (res.data.success) {
-          console.log("res", res);
-          // 6. 把 產品資訊 products 與 分頁資訊 pagination 存起來
-          this.products = res.data.products;
-          this.pagination = res.data.pagination;
-        }
       });
     },
   },

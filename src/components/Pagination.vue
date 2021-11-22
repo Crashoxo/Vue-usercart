@@ -50,6 +50,7 @@ export default {
     preBtn() {
       if (this.pages.has_pre) {
         this.$emit("emit-pages", this.pages.current_page - 1);
+        console.log("上一頁")
       }
     },
     nextBtn() {

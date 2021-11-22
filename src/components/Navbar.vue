@@ -31,7 +31,7 @@
         </div>
       </div>
       <div>
-        <router-link to="/user/cart" class="nav-link">產品頁面</router-link>
+        <router-link to="/user/product" class="nav-link">產品頁面</router-link>
       </div>
     </div>
   </nav>
