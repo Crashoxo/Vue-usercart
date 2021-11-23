@@ -5,6 +5,7 @@
   <div class="container-fluid mt-3 position-relative">
     <!-- 跳錯誤吐司訊息 元件 -->
     <ToastMessages></ToastMessages>
+    <!-- router-view 顯示/Dashboard/子目錄 -->
     <router-view />
   </div>
 </template>
@@ -42,6 +43,7 @@ export default {
 
     // 3.登入驗證
     // https://github.com/hexschool/vue3-course-api-wiki/wiki/%E7%99%BB%E5%85%A5%E5%8F%8A%E9%A9%97%E8%AD%89
+    // 後端寫好方法，登入後才能觀看後台商品(有分頁資料)
     const api = `${process.env.VUE_APP_API}api/user/check`;
     console.log(api);
     this.$http.post(api, this.user).then((res) => {

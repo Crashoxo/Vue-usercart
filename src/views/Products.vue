@@ -5,14 +5,14 @@
     <!-- 因為把ProductModal元件抓來用了 所以可以使用showModal() -->
     <!-- v-on:click="$refs.productModal" -->
     <!-- 傳送參數true = 點此按鈕時新增商品-->
-    <button v-on:click="openModal(true)" class="btn btn-primary" type="button">
+    <button v-on:click="openModal(true)" class="btn btn-outline-light" type="button">
       增加一個產品
     </button>
   </div>
   <div>
     <table class="table mt-4">
       <thead>
-        products.vue
+        <h5 style="color:#323232">products.vue</h5>
         <tr>
           <th width="120">分類</th>
           <th>產品名稱</th>
@@ -42,7 +42,7 @@
             <div class="btn-group">
               <button
                 v-on:click="openModal(false, item)"
-                class="btn btn-outline-primary btn-sm"
+                class="btn btn-outline-light btn-sm"
               >
                 編輯
               </button>

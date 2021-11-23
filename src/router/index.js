@@ -53,6 +53,11 @@ const routes = [
     component: () => import("../views/Userboard.vue"),
     children: [
       {
+        path: "index",
+        name: "Index",
+        component: () => import("../views/index.vue"),
+      },
+      {
         path: "product",
         component: () => import("../views/UserProductAll.vue"),
       },
@@ -70,13 +75,12 @@ const routes = [
         path: "checkout/:orderId",
         component: () => import("../views/UserCheckout.vue"),
       },
-
     ],
   },
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),  //# 模擬後端路徑
+  history: createWebHashHistory(), //# 模擬後端路徑
   routes,
 });
 

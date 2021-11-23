@@ -2,6 +2,11 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 
+// BS Js
+import "bootstrap";
+// or get all of the named exports for further usage
+// import * as bootstrap from 'bootstrap';  //錯誤所以註解 about Eslink = import "bootstrap";
+
 // axios匯入
 // https://www.npmjs.com/package/vue-axios
 import axios from "axios";
@@ -44,8 +49,6 @@ configure({
 setLocale("zh_TW");
 
 const app = createApp(App);
-
-
 
 // 全域定義 方法
 // https://v3.cn.vuejs.org/api/application-config.html#globalproperties

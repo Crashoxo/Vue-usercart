@@ -4,9 +4,9 @@
     <!-- 3. 製作submit事件綁方法 -->
     <form v-on:submit.prevent="signIn" class="row justify-content-center">
       <div class="col-md-6">
-        <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-light">請先登入</h1>
         <div class="mb-2">
-          <label for="inputEmail" class="sr-only">Email address</label>
+          <label for="inputEmail" class="sr-only text-light">Email address</label>
           <!-- 2. v-model雙向綁定，需有倉庫 -->
           <input
             v-model="user.username"
@@ -19,7 +19,7 @@
           />
         </div>
         <div class="mb-2">
-          <label for="inputPassword" class="sr-only">Password</label>
+          <label for="inputPassword" class="sr-only text-light">Password</label>
           <!-- 2. v-model雙向綁定，需有倉庫 -->
           <input
             v-model="user.password"
@@ -32,7 +32,7 @@
         </div>
 
         <div class="text-end mt-4">
-          <button class="btn btn-lg btn-primary btn-block" type="submit">
+          <button class="btn btn-lg btn-dark btn-outline-light btn-block" type="submit">
             登入
           </button>
         </div>

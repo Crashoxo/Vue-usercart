@@ -30,7 +30,7 @@
           <td>
             <div class="btn-group">
               <button
-                class="btn btn-outline-primary btn-sm"
+                class="btn btn-outline-light btn-sm"
                 @click="openCouponModal(false, item)"
               >
                 編輯

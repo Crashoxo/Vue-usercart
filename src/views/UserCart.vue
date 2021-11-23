@@ -1,7 +1,8 @@
 <template>
   <div>
     <!-- 購物車列表 -->
-    <div class="my-5 row justify-content-center">
+    <div style="height: 100px"></div>
+    <div class="row justify-content-center">
       <!-- col-md-6 寬度 -->
       <div class="col-md-6">
         <div class="sticky-top">
@@ -66,7 +67,7 @@
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="3" class="text-end">總計</td>
+                <td colspan="3" class="text-end">Total</td>
                 <td class="text-end">{{ $filters.currency(cart.total) }}</td>
               </tr>
               <!-- 如果不相同 顯示此tr -->
@@ -83,7 +84,7 @@
               type="text"
               class="form-control"
               v-model="coupon_code"
-              placeholder="請輸入優惠碼"
+              placeholder="請輸入優惠碼 shop666 享有9折優惠 (Discount code: shop666 )"
             />
             <div class="input-group-append">
               <button
@@ -91,7 +92,7 @@
                 class="btn btn-outline-secondary"
                 type="button"
               >
-                套用優惠碼
+                套用優惠碼 Discount code
               </button>
             </div>
           </div>
@@ -128,7 +129,7 @@
             type="text"
             class="form-control"
             :class="{ 'is-invalid': errors['姓名'] }"
-            placeholder="請輸入姓名"
+            placeholder="請輸入姓名 ( Name )"
             rules="required"
             v-model="form.user.name"
           ></Field>
@@ -143,7 +144,7 @@
             type="tel"
             class="form-control"
             :class="{ 'is-invalid': errors['電話'] }"
-            placeholder="請輸入電話"
+            placeholder="請輸入電話 (PhoneNumber)"
             rules="required"
             v-model="form.user.tel"
           ></Field>
@@ -158,7 +159,7 @@
             type="text"
             class="form-control"
             :class="{ 'is-invalid': errors['地址'] }"
-            placeholder="請輸入地址"
+            placeholder="請輸入地址 (Address)"
             rules="required"
             v-model="form.user.address"
           ></Field>
@@ -174,14 +175,16 @@
             cols="30"
             rows="10"
             v-model="form.message"
+            placeholder="留言 (Message)"
           ></textarea>
         </div>
         <div class="text-end">
-          <button class="btn btn-danger">送出訂單</button>
+          <button class="btn btn-danger">Send an Order</button>
         </div>
       </Form>
     </div>
   </div>
+        <div style="height: 200px"></div>
 </template>
 <script>
 export default {
@@ -287,3 +290,9 @@ export default {
   },
 };
 </script>
+
+<style>
+Form {
+  color: aliceblue;
+}
+</style>

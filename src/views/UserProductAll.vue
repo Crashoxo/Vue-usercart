@@ -1,88 +1,230 @@
 <template>
   <!-- 產品總頁面/購物車 -->
-  <h1 class="aaa">Hello world, askie.</h1>
-
-  <Loading :active="isLoading"></Loading>
-  <div class="container">
-    <div class="row mt-4">
-      <!-- "col-md-7" -->
-      <div class="">
-        <table class="table align-middle">
-          <thead>
-            <tr>
-              <th>圖片</th>
-              <th>商品名稱</th>
-              <th>價格</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in products" :key="item.id">
-              <td style="width: 200px">
-                <div
-                  style="
-                    height: 100px;
-                    background-size: cover;
-                    background-position: center;
-                  "
-                  :style="{ backgroundImage: `url(${item.imageUrl})` }"
-                ></div>
-              </td>
-              <td>
-                <a href="#" class="text-dark">{{ item.title }}</a>
-              </td>
-              <td>
+  <div>
+    <Loading :active="isLoading"></Loading>
+    <div
+      id="carouselExampleCaptions"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="3000">
+          <img src="../assets/img/a01.jpg" class="d-block w-100" alt="..." />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>First slide label</h5>
+            <p>
+              The greatest test of courage on earth is to bear defeat without
+              losing heart.
+            </p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+          <img src="../assets/img/a03.jpg" class="d-block w-100" alt="..." />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Second slide label</h5>
+            <p>
+              Life is the art of drawing sufficient conclusions form
+              insufficient premises.
+            </p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+          <img src="../assets/img/a02.jpg" class="d-block w-100" alt="..." />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Third slide label</h5>
+            <p>
+              There's only one corner of the universe you can be sure of
+              improving, and that's your own self.
+            </p>
+          </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="container">
+      <div class="row mt-4">
+        <!-- "col-md-7" -->
+        <div class="">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th>圖片</th>
+                <th>商品名稱</th>
+                <th>價格</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in products" :key="item.id">
+                <td style="width: 200px">
+                  <div
+                    style="
+                      height: 100px;
+                      background-size: cover;
+                      background-position: center;
+                    "
+                    :style="{ backgroundImage: `url(${item.imageUrl})` }"
+                  ></div>
+                </td>
+                <td>
+                  <a
+                    href=""
+                    v-on:click.prevent="getProduct(item.id)"
+                    class="btn-outline-light btn"
+                    >{{ item.title }}</a
+                  >
+                </td>
+                <td>
+                  <div class="h5" v-if="!item.price">
+                    {{ item.origin_price }} 元
+                  </div>
+                  <del class="h6" v-if="item.price"
+                    >原價 {{ item.origin_price }} 元</del
+                  >
+                  <div class="h5" v-if="item.price">
+                    現在只要 {{ $filters.currency(item.price) }} 元
+                  </div>
+                </td>
+                <td>
+                  <div class="btn-group btn-group-sm">
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary"
+                      @click="getProduct(item.id)"
+                    >
+                      查看更多
+                    </button>
+                    <!-- API需要product_id(String)、qty(Number) -->
+                    <!-- 樣式：disabled 按鈕不能按 -->
+                    <!-- 如果倉庫收到的值 === 當前id -->
+                    <button
+                      v-on:click="addCart(item.id)"
+                      v-bind:disabled="this.status.loadingItem === item.id"
+                      type="button"
+                      class="btn btn-outline-danger"
+                    >
+                      <!-- BS樣式 -->
+                      <!-- https://getbootstrap.com/docs/5.1/components/spinners/ -->
+                      <div
+                        v-if="this.status.loadingItem === item.id"
+                        class="spinner-grow spinner-grow-sm text-danger"
+                        role="status"
+                      >
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      加到購物車
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- 分頁元件 -->
+      <h1 class="aaa">可使用 管理者登入</h1>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" v-for="item in products" :key="item.id">
+          <div class="card product">
+            <img
+              v-on:click.prevent="getProduct(item.id)"
+              :src="`${item.imageUrl}`"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center">{{ item.title }}</h5>
+              <div class="card-text text-center">
                 <div class="h5" v-if="!item.price">
                   {{ item.origin_price }} 元
                 </div>
+                <br />
                 <del class="h6" v-if="item.price"
-                  >原價 {{ item.origin_price }} 元</del
+                  >original price {{ item.origin_price }} NT</del
                 >
+
                 <div class="h5" v-if="item.price">
-                  現在只要 {{ item.price }} 元
+                  special offer {{ $filters.currency(item.price) }} NT
                 </div>
-              </td>
-              <td>
-                <div class="btn-group btn-group-sm">
-                  <button
-                    type="button"
-                    class="btn btn-outline-secondary"
-                    @click="getProduct(item.id)"
-                  >
-                    查看更多
-                  </button>
-                  <!-- API需要product_id(String)、qty(Number) -->
-                  <!-- 樣式：disabled 按鈕不能按 -->
-                  <!-- 如果倉庫收到的值 === 當前id -->
-                  <button
-                    v-on:click="addCart(item.id)"
-                    v-bind:disabled="this.status.loadingItem === item.id"
-                    type="button"
-                    class="btn btn-outline-danger"
-                  >
-                    <!-- BS樣式 -->
-                    <!-- https://getbootstrap.com/docs/5.1/components/spinners/ -->
-                    <div
-                      v-if="this.status.loadingItem === item.id"
-                      class="spinner-grow spinner-grow-sm text-danger"
-                      role="status"
-                    >
-                      <span class="visually-hidden">Loading...</span>
-                    </div>
-                    加到購物車
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              </div>
+            </div>
+            <button
+              @click="getProduct(item.id)"
+              type="button"
+              class="btn btn-outline-secondary"
+              style="font-weight: bold"
+            >
+              SEE MORE
+            </button>
+            <!-- API需要product_id(String)、qty(Number) -->
+            <!-- 樣式：disabled 按鈕不能按 -->
+            <!-- 如果倉庫收到的值 === 當前id -->
+            <button
+              v-on:click="addCart(item.id)"
+              v-bind:disabled="this.status.loadingItem === item.id"
+              type="button"
+              class="btn btn-outline-danger"
+              style="font-weight: bold"
+            >
+              <!-- BS樣式 -->
+              <!-- https://getbootstrap.com/docs/5.1/components/spinners/ -->
+              <div
+                v-if="this.status.loadingItem === item.id"
+                class="spinner-grow spinner-grow-sm text-danger"
+                role="status"
+              >
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              Add Cart
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- 分頁元件 -->
   </div>
+  <div style="height: 200px"></div>
 </template>
-<script>
 
+<script>
 export default {
   data() {
     return {
@@ -146,7 +288,26 @@ export default {
 <style>
 .aaa {
   font-size: 2rem;
-  color: rgb(0, 0, 0);
-  background-color: blueviolet;
+  color: #946763;
+  background-color: rgb(63, 31, 28, 0.8);
+  height: 100px;
+  /* 平均分給上下 */
+  line-height: 100px;
+  text-align: center;
+
+  height: 100px;
+}
+.btn {
+  border-color: transparent;
+  /* border: 0px solid; */
+}
+.btn-outline-light:hover {
+  color: #ffeb7b;
+  /* border-block-color: transparent; */
+  /* border: 0px; */
+  background-color: transparent;
+}
+.product {
+  background-color: rgba(240, 241, 243, 0.8);
 }
 </style>

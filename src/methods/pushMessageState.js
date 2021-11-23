@@ -1,10 +1,10 @@
 import emitter from "@/methods/emitter";
 
-export default function (res, title = "更新") {
+export default function (res, title = "更新 Update") {
   if (res.data.success) {
     emitter.emit("push-message", {
       style: "success",
-      title: `${title}成功`,
+      title: `${title}成功 Success`,
     });
   } else {
     // 有些訊息是字串，有些則是陣列，在此統一格式
@@ -14,7 +14,7 @@ export default function (res, title = "更新") {
         : res.data.message;
     emitter.emit("push-message", {
       style: "danger",
-      title: `${title}失敗`,
+      title: `${title}失敗 Fail`,
       content: message.join("、"),
     });
   }

@@ -1,41 +1,46 @@
 <template>
   <!-- 產品各別頁面 -->
   <Loading :active="isLoading"></Loading>
-  <div class="container">
+  <div class="container justify-content-center pt-5">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <router-link to="/user/cart">購物車</router-link>
+          <router-link to="/user/product">Products</router-link>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
           {{ product.title }}
         </li>
       </ol>
     </nav>
-    <div class="row justify-content-center">
-      <article class="col-8">
+    <div class="row justify-content-center color">
+      <article class="col-lg-8">
         <h2>{{ product.title }}</h2>
-        <div>{{ product.content }}</div>
-        <div>{{ product.description }}</div>
         <img :src="product.imageUrl" alt="" class="img-fluid mb-3" />
       </article>
-      <div class="col-4">
-        <div class="h5" v-if="!product.price">
+      <div class="col-lg-4 col-sm-12 pt-5">
+        <hr />
+        <div
+          class="color"
+        >
+          <div class="color m-3">{{ product.content }}</div>
+          <div class="color m-3">{{ product.description }}</div>
+        </div>
+         <hr />
+        <div class="h5 m-3" v-if="!product.price">
           {{ product.origin_price }} 元
         </div>
-        <del class="h6" v-if="product.price"
-          >原價 {{ product.origin_price }} 元</del
+        <del class="h6 m-3" v-if="product.price"
+          >original price {{ product.origin_price }} 元</del
         >
-        <div class="h5" v-if="product.price">
-          現在只要 {{ product.price }} 元
+        <div class="h5 m-3" v-if="product.price">
+          special offer {{ product.price }} 元
         </div>
-        <hr />
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 m-3">
           <!-- v-model 綁定方法：text、textarea、number 抓輸入值 -->
           <!-- 此時qty會自動抓值 -->
           <input
             v-model="qty"
-            min=1
+            min="1"
             number
             type="number"
             class="form-control"
@@ -47,7 +52,8 @@
         <button
           @click="addToCart(product.id, qty)"
           type="button"
-          class="btn btn-outline-danger"
+          class="btn btn-outline-danger w-100 m-3"
+          style="font-weight: bold"
         >
           <!-- BS樣式 -->
           <!-- https://getbootstrap.com/docs/5.1/components/spinners/ -->
@@ -58,11 +64,12 @@
           >
             <span class="visually-hidden">Loading...</span>
           </div>
-          加到購物車
+          Add Cart
         </button>
       </div>
     </div>
   </div>
+  <div style="height: 400px"></div>
 </template>
 
 <script>
@@ -114,3 +121,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.color {
+  color: #ffeb7b;
+}
+</style>

@@ -1,7 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">範例作品</a>
+      <router-link class="navbar-brand" to="/user/product"
+        >範例作品</router-link
+      >
 
       <button
         class="navbar-toggler"
@@ -30,7 +32,7 @@
           <a href="#" @click.prevent="logout" class="nav-link">登出</a>
         </div>
       </div>
-      <div>
+      <div class="navbar-nav">
         <router-link to="/user/product" class="nav-link">產品頁面</router-link>
       </div>
     </div>
@@ -59,3 +61,17 @@ export default {
   },
 };
 </script>
+<style>
+.navbar-dark{
+  background-color: rgba(255,255,204,0.2);
+}
+body{
+    background-color: rgb(10, 10, 10);
+}
+.table{
+  color: aliceblue;
+}
+a {
+    text-decoration:none;
+}
+</style>

@@ -43,7 +43,7 @@
           <td>
             <div class="btn-group">
               <button
-                class="btn btn-outline-primary btn-sm"
+                class="btn btn-outline-light btn-sm"
                 @click="openModal(false, item)"
               >
                 檢視
