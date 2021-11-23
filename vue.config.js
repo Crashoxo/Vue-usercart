@@ -1,11 +1,9 @@
 module.exports = {
-  publicPath: '/Vue-usercart/dist2/',
+  publicPath: '/Vue-usercart/dist/',
 
   configureWebpack: {
     externals: {
       jquery: "jQuery",
     },
-  },
-
-  outputDir: 'dist2'
+  }
 };
