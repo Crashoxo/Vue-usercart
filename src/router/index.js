@@ -75,6 +75,11 @@ const routes = [
         path: "checkout/:orderId",
         component: () => import("../views/UserCheckout.vue"),
       },
+      {
+       
+        path: "777",
+        component: () => import("../views/777.vue"),
+      },
     ],
   },
 ];

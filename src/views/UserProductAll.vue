@@ -162,62 +162,71 @@
       </div>
       <!-- 分頁元件 -->
       <h1 class="aaa">可使用 管理者登入</h1>
+      <!-- 卡片 -->
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col" v-for="item in products" :key="item.id">
-          <div class="card product">
-            <img
-              v-on:click.prevent="getProduct(item.id)"
-              :src="`${item.imageUrl}`"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title text-center">{{ item.title }}</h5>
-              <div class="card-text text-center">
-                <div class="h5" v-if="!item.price">
-                  {{ item.origin_price }} 元
-                </div>
-                <br />
-                <del class="h6" v-if="item.price"
-                  >original price {{ item.origin_price }} NT</del
-                >
+        <!-- transition-group 下必須馬上接 v-for 才吃的到 key-->
+        <transition-group appear @before-enter="beforeEnter" @enter="enter">
+          <div
+            class="col"
+            v-for="(item, key) in products"
+            :data-index="key"
+            :key="item.id + key"
+          >
+            <div class="card product">
+              <img
+                v-on:click.prevent="getProduct(item.id)"
+                :src="`${item.imageUrl}`"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title text-center">{{ item.title }}</h5>
+                <div class="card-text text-center">
+                  <div class="h5" v-if="!item.price">
+                    {{ item.origin_price }} 元
+                  </div>
+                  <br />
+                  <del class="h6" v-if="item.price"
+                    >original price {{ item.origin_price }} NT</del
+                  >
 
-                <div class="h5" v-if="item.price">
-                  special offer {{ $filters.currency(item.price) }} NT
+                  <div class="h5" v-if="item.price">
+                    special offer {{ $filters.currency(item.price) }} NT
+                  </div>
                 </div>
               </div>
-            </div>
-            <button
-              @click="getProduct(item.id)"
-              type="button"
-              class="btn btn-outline-secondary"
-              style="font-weight: bold"
-            >
-              SEE MORE
-            </button>
-            <!-- API需要product_id(String)、qty(Number) -->
-            <!-- 樣式：disabled 按鈕不能按 -->
-            <!-- 如果倉庫收到的值 === 當前id -->
-            <button
-              v-on:click="addCart(item.id)"
-              v-bind:disabled="this.status.loadingItem === item.id"
-              type="button"
-              class="btn btn-outline-danger"
-              style="font-weight: bold"
-            >
-              <!-- BS樣式 -->
-              <!-- https://getbootstrap.com/docs/5.1/components/spinners/ -->
-              <div
-                v-if="this.status.loadingItem === item.id"
-                class="spinner-grow spinner-grow-sm text-danger"
-                role="status"
+              <button
+                @click="getProduct(item.id)"
+                type="button"
+                class="btn btn-outline-secondary"
+                style="font-weight: bold"
               >
-                <span class="visually-hidden">Loading...</span>
-              </div>
-              Add Cart
-            </button>
+                SEE MORE
+              </button>
+              <!-- API需要product_id(String)、qty(Number) -->
+              <!-- 樣式：disabled 按鈕不能按 -->
+              <!-- 如果倉庫收到的值 === 當前id -->
+              <button
+                v-on:click="addCart(item.id)"
+                v-bind:disabled="this.status.loadingItem === item.id"
+                type="button"
+                class="btn btn-outline-danger"
+                style="font-weight: bold"
+              >
+                <!-- BS樣式 -->
+                <!-- https://getbootstrap.com/docs/5.1/components/spinners/ -->
+                <div
+                  v-if="this.status.loadingItem === item.id"
+                  class="spinner-grow spinner-grow-sm text-danger"
+                  role="status"
+                >
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                Add Cart
+              </button>
+            </div>
           </div>
-        </div>
+        </transition-group>
       </div>
     </div>
   </div>
@@ -225,6 +234,7 @@
 </template>
 
 <script>
+import gsap from "gsap";
 export default {
   data() {
     return {
@@ -277,11 +287,26 @@ export default {
         this.$router.push("/user/cart");
       });
     },
+    beforeEnter(el) {
+      console.log("aaa");
+      el.style.opacity = 0;
+      el.style.transform = "translateY(60px)";
+    },
+    enter(el) {
+      console.log("aaa");
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: el.dataset.index * 0.5,
+      });
+    },
   },
   // 生命週期，網頁開始就跑
   created() {
     this.getProducts();
   },
+  mounted() {},
 };
 </script>
 
