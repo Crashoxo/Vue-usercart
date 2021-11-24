@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 
+// http://localhost:8080/Vue-usercart/dist/#/user/product
+
 const routes = [
   {
     path: "/",
