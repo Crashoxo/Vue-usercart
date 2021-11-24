@@ -372,25 +372,25 @@ export default {
         toggleActions: "play none none none",
         scrub: true, // 物件動畫根據卷軸捲動程度跑
         start: "top",
-        // end: "+=100",
+        end: "+=100",
         // markers: true,
       },
     });
     gsap.to(".title2", {
-      opacity: 0,
-      duration: 1,
-      y: 0,
-      x: 100,
-      scrollTrigger: {
-        trigger: ".title2",
-        // 在這個情境 trigger 要是物件，不是選擇器
-        toggleActions: "play none none none",
-        scrub: true, // 物件動畫根據卷軸捲動程度跑
-        start: "top",
-        // end: "+=100",
-        // markers: true,
-      },
+      // opacity: 0,
+      // duration: 1,
+      // y: 0,
+      // x: 100,
+      // scrollTrigger: {
+      //   trigger: ".title2",
+      //   // 在這個情境 trigger 要是物件，不是選擇器
+      //   toggleActions: "play none none none",
+      //   scrub: true, // 物件動畫根據卷軸捲動程度跑
+      //   start: "top",
+      //   // markers: true,
+      // },
     });
+    
   },
 };
 </script>

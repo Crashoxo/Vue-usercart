@@ -33,13 +33,13 @@
                 class="btn btn-outline-light btn-sm"
                 @click="openCouponModal(false, item)"
               >
-                編輯
+                Edit
               </button>
               <button
                 class="btn btn-outline-danger btn-sm"
                 @click="openDelCouponModal(item)"
               >
-                刪除
+                Delete
               </button>
             </div>
           </td>

@@ -1,5 +1,6 @@
 <template>
   <Loading :active="isLoading"></Loading>
+  <div style="height: 100px"></div>
   <div class="my-5 row justify-content-center">
     <form class="col-md-6" @submit.prevent="payOrder">
       <table class="table align-middle">
@@ -18,7 +19,7 @@
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="2" class="text-end">總計</td>
+            <td colspan="2" class="text-end">Total</td>
             <!-- $filters 全域方法 變更$格式 -->
             <td class="text-end">{{ $filters.currency(order.total) }}</td>
           </tr>
@@ -46,16 +47,19 @@
           <tr>
             <th>付款狀態</th>
             <td>
-              <span v-if="!order.is_paid">尚未付款</span>
-              <span v-else class="text-success">付款完成</span>
+              <span v-if="!order.is_paid">尚未付款 Not Paid Yet</span>
+              <span v-else class="text-success"
+                >付款完成 Payment completed</span
+              >
             </td>
           </tr>
         </tbody>
       </table>
       <div class="text-end" v-if="order.is_paid === false">
-        <button class="btn btn-danger">確認付款去</button>
+        <button class="btn btn-danger">確認付款去 Confirm Payment</button>
       </div>
     </form>
+    <div style="height: 400px"></div>
   </div>
 </template>
 

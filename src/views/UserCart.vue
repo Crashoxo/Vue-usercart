@@ -295,4 +295,7 @@ export default {
 Form {
   color: aliceblue;
 }
+.btn-outline-secondary{
+ color: aliceblue;
+}
 </style>

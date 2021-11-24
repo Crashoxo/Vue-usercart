@@ -5,14 +5,18 @@
     <!-- 因為把ProductModal元件抓來用了 所以可以使用showModal() -->
     <!-- v-on:click="$refs.productModal" -->
     <!-- 傳送參數true = 點此按鈕時新增商品-->
-    <button v-on:click="openModal(true)" class="btn btn-outline-light" type="button">
-      增加一個產品
+    <button
+      v-on:click="openModal(true)"
+      class="btn btn-outline-light"
+      type="button"
+    >
+      增加一個產品 Add Product
     </button>
   </div>
   <div>
     <table class="table mt-4">
       <thead>
-        <h5 style="color:#323232">products.vue</h5>
+        <h5 style="color: #323232">products.vue</h5>
         <tr>
           <th width="120">分類</th>
           <th>產品名稱</th>
@@ -44,13 +48,13 @@
                 v-on:click="openModal(false, item)"
                 class="btn btn-outline-light btn-sm"
               >
-                編輯
+                Edit
               </button>
               <button
                 v-on:click="openDelProductModal(item)"
                 class="btn btn-outline-danger btn-sm"
               >
-                刪除
+                Delete
               </button>
             </div>
           </td>
@@ -198,7 +202,7 @@ export default {
           });
         }
         // 但 吐司錯誤訊息程式碼 會因為點擊越來越多，故拆開 製作成另一方法
-        // 因此 methods > pushMessageState.js 
+        // 因此 methods > pushMessageState.js
         // 並 全域匯入 給 Coupons.vue & Orders.vue 用
         // 邏輯：因為直接用全域只會有全域一個倉庫(提升效能)，但區域就會到處都有倉庫
       });

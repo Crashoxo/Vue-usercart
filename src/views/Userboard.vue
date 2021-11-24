@@ -3,13 +3,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container-fluid">
       <router-link class="navbar-brand btn btn-outline-light" to="/user/product"
-        >❀ 用戶端範例 ❀
+        >❀ Products ❀
       </router-link>
-    </div>
-    <div>
-      <router-link class="navbar-brand btn btn-outline-light" to="/user/product"
-        >♥ Products ♥</router-link
-      >
     </div>
     <div>
       <router-link class="navbar-brand btn btn-outline-light" to="/user/cart"

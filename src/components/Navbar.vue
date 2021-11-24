@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/user/product"
-        >範例作品</router-link
+        >後台(需登入) Backstage</router-link
       >
 
       <button
@@ -19,21 +19,21 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <router-link to="/dashboard/products" class="nav-link"
-            >產品</router-link
+            >產品 Product management&nbsp;&nbsp;&nbsp;| </router-link
           >
           <router-link to="/dashboard/orders" class="nav-link"
-            >訂單</router-link
+            >訂單 Order&nbsp;&nbsp;&nbsp;| </router-link
           >
           <router-link to="/dashboard/coupons" class="nav-link"
-            >優惠券</router-link
+            >優惠券 Coupons&nbsp;&nbsp;&nbsp;| </router-link
           >
           <!-- 登出製作 -->
           <!-- click 習慣性加上 prevent 移除預設方法-->
-          <a href="#" @click.prevent="logout" class="nav-link">登出</a>
+          <a href="#" @click.prevent="logout" class="nav-link">登出 Logout</a>
         </div>
       </div>
       <div class="navbar-nav">
-        <router-link to="/user/product" class="nav-link">產品頁面</router-link>
+        <router-link to="/user/product" class="nav-link">前台 Front</router-link>
       </div>
     </div>
   </nav>

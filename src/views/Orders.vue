@@ -1,6 +1,6 @@
 <template>
   <Loading :active="isLoading"></Loading>
-  <table class="table mt-4">
+  <table class="table mt-4 ">
     <thead>
       <tr>
         <th>購買時間</th>
@@ -46,13 +46,13 @@
                 class="btn btn-outline-light btn-sm"
                 @click="openModal(false, item)"
               >
-                檢視
+                View
               </button>
               <button
                 class="btn btn-outline-danger btn-sm"
                 @click="openDelOrderModal(item)"
               >
-                刪除
+                Delete
               </button>
             </div>
           </td>
