@@ -107,8 +107,8 @@
                   </div>
                   <br />
                   <del class="h6" v-if="item.price"
-                    >original price NT {{ item.origin_price }} </del
-                  >
+                    >original price NT {{ item.origin_price }}
+                  </del>
 
                   <div class="h5" v-if="item.price">
                     special offer NT {{ $filters.currency(item.price) }} -
@@ -336,22 +336,26 @@ export default {
     enterBottom(el) {
       console.log("aaa");
       gsap.registerPlugin(ScrollTrigger);
-      gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        x: 0,
-        duration: 1,
-        delay: el.dataset.index * 0.2,
-        scrollTrigger: {
-          trigger: el,
-          // 在這個情境 trigger 要是物件，不是選擇器
-          toggleActions: "play none none none",
-          // scrub: true, // 物件動畫根據卷軸捲動程度跑
-          start: "top center",
-          // end: "+=100",
-          // markers: true,
+      gsap.to(
+        el,
+        {
+          opacity: 1,
+          y: 0,
+          x: 0,
+          duration: 1,
+          delay: el.dataset.index * 0.2,
+          scrollTrigger: {
+            trigger: el,
+            // 在這個情境 trigger 要是物件，不是選擇器
+            toggleActions: "play none none none",
+            // scrub: true, // 物件動畫根據卷軸捲動程度跑
+            start: "top center",
+            // end: "+=100",
+            // markers: true,
+          },
         },
-      });
+        "1"
+      );
     },
   },
   // 生命週期，網頁開始就跑
@@ -371,7 +375,7 @@ export default {
         // 在這個情境 trigger 要是物件，不是選擇器
         toggleActions: "play none none none",
         scrub: true, // 物件動畫根據卷軸捲動程度跑
-        start: "top",
+        start: "top center",
         end: "+=100",
         // markers: true,
       },
@@ -390,7 +394,6 @@ export default {
       //   // markers: true,
       // },
     });
-    
   },
 };
 </script>
