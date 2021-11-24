@@ -109,7 +109,7 @@ export default {
       this.$http.post(url, { data: cart }).then((response) => {
         this.status.loadingItem = ""; //資料庫更新成功後，空
         this.isLoading = false;
-        this.$httpMessageState(response, "加入購物車");
+        this.$httpMessageState(response, "加入購物車 Add Cart");
         this.$router.push("/user/cart");
       });
     },

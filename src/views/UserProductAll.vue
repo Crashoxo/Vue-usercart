@@ -298,9 +298,11 @@ export default {
       };
       this.$http.post(url, { data: cart }).then((res) => {
         this.status.loadingItem = ""; //資料庫更新成功後，空
+        this.isLoading = false;
         console.log("res", res);
+        this.$httpMessageState(res, "加入購物車 Add Cart"); //太上面了看不到
         // 轉跳登入頁面
-        this.$router.push("/user/cart");
+        // this.$router.push("/user/cart");
       });
     },
     beforeEnter(el) {
