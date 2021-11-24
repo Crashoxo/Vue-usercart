@@ -13,7 +13,7 @@
     </div>
     <div>
       <router-link class="navbar-brand btn btn-outline-light" to="/login"
-        >♥ 管理者登入 ♥</router-link
+        >♥ 管理者登入 Login ♥</router-link
       >
     </div>
   </nav>
