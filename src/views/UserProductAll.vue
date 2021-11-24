@@ -244,7 +244,7 @@
       </div>
     </div>
   </div>
-  <div style="height: 400px"></div>
+  <div style="height: 500px"></div>
 </template>
 
 <script>
@@ -370,13 +370,14 @@ export default {
       duration: 1,
       y: 0,
       x: 100,
+      // delay: 0.2,
       scrollTrigger: {
         trigger: ".title",
         // 在這個情境 trigger 要是物件，不是選擇器
         toggleActions: "play none none none",
         scrub: true, // 物件動畫根據卷軸捲動程度跑
         start: "top center",
-        end: "+=100",
+        end: "",
         // markers: true,
       },
     });
@@ -431,5 +432,23 @@ export default {
 }
 .product {
   background-color: rgba(240, 241, 243, 0.8);
+}
+@media screen and (max-width: 800px) {
+  .title {
+    height: auto;
+    font-size: 2rem;
+    line-height: 100px;
+    text-align: center;
+    height: 100px;
+    margin: 10px;
+  }
+  .title2 {
+    height: auto;
+    font-size: 2rem;
+    line-height: 100px;
+    text-align: center;
+    height: 100px;
+    margin: 10px;
+  }
 }
 </style>
