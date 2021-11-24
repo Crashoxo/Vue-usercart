@@ -107,11 +107,11 @@
                   </div>
                   <br />
                   <del class="h6" v-if="item.price"
-                    >original price {{ item.origin_price }} NT</del
+                    >original price NT {{ item.origin_price }} </del
                   >
 
                   <div class="h5" v-if="item.price">
-                    special offer {{ $filters.currency(item.price) }} NT
+                    special offer NT {{ $filters.currency(item.price) }} -
                   </div>
                 </div>
               </div>
@@ -341,7 +341,7 @@ export default {
         y: 0,
         x: 0,
         duration: 1,
-        delay: el.dataset.index * 0.5,
+        delay: el.dataset.index * 0.2,
         scrollTrigger: {
           trigger: el,
           // 在這個情境 trigger 要是物件，不是選擇器
